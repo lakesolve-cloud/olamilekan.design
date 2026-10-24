@@ -38,11 +38,12 @@ npx vercel
 ```
 Run it inside this folder and follow the prompts. Use `npx vercel --prod` to publish to production.
 
-## After the first deploy
+## Live site
 
+https://olamilekandesign.vercel.app
 
-(for example `olamilekan.vercel.app` or a custom domain), replace `/og-image.png` in the
-`og:image` and `twitter:image` tags of each HTML file with `https://YOUR-DOMAIN/og-image.png`.
+The social preview tags (`og:url`, `og:image`, `twitter:image`) use this domain. If you
+move to a custom domain, update those tags in each HTML file.
 
 ## Updating content
 
