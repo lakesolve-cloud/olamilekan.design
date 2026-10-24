@@ -40,7 +40,7 @@ Run it inside this folder and follow the prompts. Use `npx vercel --prod` to pub
 
 ## After the first deploy
 
-Social platforms need the full URL for the preview image. Once you know your domain
+
 (for example `olamilekan.vercel.app` or a custom domain), replace `/og-image.png` in the
 `og:image` and `twitter:image` tags of each HTML file with `https://YOUR-DOMAIN/og-image.png`.
 
