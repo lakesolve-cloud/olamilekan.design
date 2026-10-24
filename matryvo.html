@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matryvo Case Study · Olamilekan Muhammed</title>
+<meta name="description" content="Brand identity, design system, website and catalog for Matryvo, a factory-direct construction procurement company.">
+<meta name="theme-color" content="#0b0b0f">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Matryvo Case Study · Olamilekan Muhammed">
+<meta property="og:description" content="Brand identity, design system, website and catalog for Matryvo, a factory-direct construction procurement company.">
+<meta property="og:image" content="/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Matryvo Case Study · Olamilekan Muhammed">
+<meta name="twitter:description" content="Brand identity, design system, website and catalog for Matryvo, a factory-direct construction procurement company.">
+<meta name="twitter:image" content="/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,700..900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="case.css">
+<style>
+/* Matryvo brand tokens, used for brand specimens on this page */
+:root {
+  --brand: #c4683c;
+  --art: #2b2016;
+  --m-ink: #1b2230;
+  --m-bone: #f3efe8;
+  --m-laterite: #a64e2a;
+  --m-celadon: #b9c4b7;
+  --m-success: #3e6a55;
+  --m-line: #d8d4cb;
+  --m-display: "Bricolage Grotesque", "Archivo", sans-serif;
+  --m-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --m-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+.hero-art.brand { background: var(--m-bone); padding: 0; place-items: center; }
+.hero-art.brand svg { width: 52%; height: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--brand); color: var(--brand); border-radius: 999px; }
+
+.promise { border-radius: 18px; background: var(--m-ink); border: 1px solid var(--line); padding: 32px; display: grid; gap: 14px; align-content: start; }
+.promise p.big { font-family: var(--m-display); font-weight: 600; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; color: var(--m-bone); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.numbered { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; counter-reset: n; }
+.numbered li { display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px; counter-increment: n; }
+.numbered li::before { content: counter(n, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--brand); padding-top: 5px; grid-row: span 2; }
+.numbered h3 { font-size: 19px; }
+.numbered p { color: var(--dust); font-size: 16px; }
+
+.logo-panel { border-radius: 22px; background: var(--m-bone); display: grid; place-items: center; padding: 56px 24px; }
+.logo-panel svg { width: min(260px, 70%); height: auto; }
+.logo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.logo-row div { border-radius: 14px; display: grid; place-items: center; padding: 22px; }
+.logo-row svg { width: 54px; height: auto; }
+.lockup { display: flex; align-items: center; gap: 10px; font-family: var(--m-display); font-weight: 600; font-size: 22px; letter-spacing: -.01em; }
+.lockup svg { width: 34px; height: auto; }
+
+.palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.palette div { display: grid; gap: 8px; font-size: 14px; }
+.palette i { display: block; aspect-ratio: 4 / 3; border-radius: 12px; border: 1px solid var(--line); }
+.type-card { border-radius: 18px; background: var(--m-bone); color: var(--m-ink); padding: 28px; display: grid; gap: 10px; }
+.type-card .d { font-family: var(--m-display); font-weight: 600; font-size: clamp(30px, 4vw, 48px); line-height: 1; }
+.type-card .b { font-family: var(--m-body); font-size: 20px; }
+.type-card .m { font-family: var(--m-mono); font-size: 13px; letter-spacing: .04em; }
+.type-card small { color: #6b6a66; font-family: var(--m-body); font-size: 13px; }
+.rules { display: grid; grid-template-columns: auto 1fr; gap: 10px 20px; font-size: 16px; }
+.rules b { font-family: var(--mono); font-weight: 500; color: var(--brand); font-variant-numeric: tabular-nums; }
+.rules span { color: var(--dust); }
+
+.browser { display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--plate); }
+.browser .bar-top { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.browser .bar-top i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.browser img { width: 100%; }
+
+.stages { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+.stages div { display: grid; gap: 8px; font-size: 13px; color: var(--dust); min-width: 0; }
+.stages i { display: block; height: 6px; border-radius: 3px; background: var(--line); }
+.stages .done i { background: var(--m-success); }
+.stages .now i { background: var(--brand); }
+.stages .now { color: var(--paper); }
+.stages b { font-family: var(--mono); font-weight: 500; font-size: 11px; }
+.stages-wrap { overflow-x: auto; }
+.stages-wrap .stages { min-width: 720px; }
+
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.card .tagline { font-family: var(--mono); font-size: 12px; color: var(--paper); letter-spacing: .04em; }
+
+.sheets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.sheet { aspect-ratio: 3 / 4; border-radius: 10px; padding: 22px; display: grid; align-content: start; gap: 12px; background: var(--m-bone); color: var(--m-ink); font-family: var(--m-body); box-shadow: 0 24px 48px rgba(0,0,0,.4); min-width: 0; }
+.sheet.dark { background: var(--m-ink); color: var(--m-bone); }
+.sheet .kicker { font-family: var(--m-mono); font-size: 10px; letter-spacing: .08em; color: var(--m-laterite); text-transform: uppercase; }
+.sheet.dark .kicker { color: #d9895f; }
+.sheet h4 { margin: 0; font-family: var(--m-display); font-weight: 600; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.08; }
+.sheet p { font-size: 13px; opacity: .78; }
+.sheet .foot { margin-top: auto; font-family: var(--m-mono); font-size: 10px; opacity: .6; }
+.sheet .lockup { font-size: 18px; }
+.sheet .lockup svg { width: 26px; }
+
+.closing { font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 3vw, 36px); line-height: 1.2; max-width: 30em; text-wrap: balance; }
+
+@media (max-width: 900px) {
+  .split, .grid4 { grid-template-columns: 1fr 1fr; }
+  .split { grid-template-columns: 1fr; }
+  .palette { grid-template-columns: repeat(3, 1fr); }
+  .grid5 { grid-template-columns: 1fr 1fr; }
+  .sheets { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .grid4, .grid5 { grid-template-columns: 1fr; }
+  .sheets { grid-template-columns: 1fr; }
+  .sheet { aspect-ratio: auto; min-height: 320px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="m-mark" viewBox="0 0 124 84">
+    <path d="M9 84V40a26 26 0 0 1 52 0v44M61 84V40a26 26 0 0 1 52 0v44" fill="none" stroke="currentColor" stroke-width="15" transform="translate(1 0)"/>
+    <path d="M26 84V48a10 10 0 0 1 20 0v36M78 84V48a10 10 0 0 1 20 0v36" fill="none" stroke="#a64e2a" stroke-width="9" transform="translate(1 0)"/>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="/#brand">← All work</a>
+    <a class="mark" href="/">Olamilekan<span>.</span>design</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="label">Case study · Brand, product &amp; web</span>
+        <h1 class="display">Matryvo<span>.</span></h1>
+        <p class="lede">Building confidence into construction procurement. A complete brand and digital system that makes <strong>factory-direct sourcing feel calm, transparent and accountable</strong>.</p>
+        <div class="chips"><span class="chip">Identity</span><span class="chip">Design system</span><span class="chip">Website</span><span class="chip">20-page catalog</span></div>
+      </div>
+      <div class="hero-art brand"><svg role="img" aria-label="Matryvo logo mark" style="color:#1b2230"><use href="#m-mark"/></svg></div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <div class="wrap">
+      <div class="fact"><span class="label">Role</span><b>Brand, product &amp; web designer</b></div>
+      <div class="fact"><span class="label">Scope</span><b>Logo to live site</b></div>
+      <div class="fact"><span class="label">Markets</span><b>Africa · USA</b></div>
+      <div class="fact"><span class="label">Live</span><b><a href="https://matryvo.com/" target="_blank" rel="noopener">matryvo.com ↗</a></b></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Context -->
+    <section class="sec" id="context">
+      <div class="sec-head read">
+        <span class="label">Context</span>
+        <h2 class="display">The problem wasn't sourcing. It was uncertainty.</h2>
+      </div>
+      <div class="split">
+        <div class="prose">
+          <p class="muted">Matryvo connects building projects with factories in China and handles specifications, payments, production, quality checks, shipping and delivery. Buying across borders stacks up risk: unclear supplier accountability, uneven quality, fragmented logistics, payment anxiety and little visibility between order and delivery.</p>
+          <p class="muted">Matryvo had to present itself as more than a sourcing company. The brand needed to communicate control, trust and a clear process.</p>
+        </div>
+        <ol class="numbered">
+          <li><h3>Rising cost</h3><p>Every intermediary adds margin and eats into the budget.</p></li>
+          <li><h3>Supplier risk</h3><p>Clients need confidence that what they specified is what gets made.</p></li>
+          <li><h3>Limited visibility</h3><p>Long procurement cycles feel risky when clients can't see progress.</p></li>
+          <li><h3>No clear owner</h3><p>When something changes, clients need one person accountable.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Objective -->
+    <section class="sec" id="objective">
+      <div class="sec-head read">
+        <span class="label">Design objective</span>
+        <h2 class="display">Make a complicated process feel simple, not simplistic.</h2>
+      </div>
+      <div class="grid4">
+        <div class="card"><span class="label">Exact</span><p>Specs, quantities, payments and dates should feel document-grade, not promotional.</p></div>
+        <div class="card"><span class="label">Calm</span><p>Hierarchy, whitespace and predictable structure reduce anxiety.</p></div>
+        <div class="card"><span class="label">Grounded</span><p>The look should feel architectural and material, not like a glossy tech startup.</p></div>
+        <div class="card"><span class="label">Accountable</span><p>Every project state makes the next step and the responsible person obvious.</p></div>
+      </div>
+    </section>
+
+    <!-- Strategy -->
+    <section class="sec" id="strategy">
+      <div class="sec-head read">
+        <span class="label">Strategy</span>
+        <h2 class="display">Four decisions shaped the system.</h2>
+      </div>
+      <div class="split">
+        <ol class="numbered">
+          <li><h3>Journey before catalogue</h3><p>The website explains the procurement path first, instead of opening with a giant product list.</p></li>
+          <li><h3>Evidence before marketing</h3><p>Bills of quantities, QA records, stages, dates and named owners earn more trust than generic claims.</p></li>
+          <li><h3>One accent, one priority</h3><p>Laterite orange is reserved for the single most important action on each screen.</p></li>
+          <li><h3>Editorial clarity</h3><p>Structured type and architecture-inspired spacing make dense information easy to scan.</p></li>
+        </ol>
+        <div class="promise">
+          <span class="label" style="color:#d9895f">Core promise</span>
+          <p class="big">You always know what you ordered, what you paid, what's next, and who to call.</p>
+          <p class="muted" style="font-size:16px">That sentence became the design filter for both the brand and the product.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Identity -->
+    <section class="sec" id="identity">
+      <div class="sec-head read">
+        <span class="label">Identity</span>
+        <h2 class="display">A mark about holding the project together.</h2>
+        <p class="muted">Two architectural arches form a lowercase m. Smaller laterite arches sit inside them: the quote, deposit and order that Matryvo manages within the client's larger project.</p>
+      </div>
+      <div class="split">
+        <div>
+          <div class="logo-panel"><svg role="img" aria-label="Matryvo primary mark" style="color:#1b2230"><use href="#m-mark"/></svg></div>
+          <div class="logo-row">
+            <div style="background:var(--m-ink)"><svg aria-label="Reversed mark" role="img" style="color:#f3efe8"><use href="#m-mark"/></svg></div>
+            <div style="background:var(--m-bone)"><span class="lockup" style="color:var(--m-ink)"><svg aria-hidden="true" style="color:#1b2230"><use href="#m-mark"/></svg>matryvo</span></div>
+            <div style="background:var(--m-celadon)"><svg aria-label="Mark on celadon" role="img" style="color:#1b2230"><use href="#m-mark"/></svg></div>
+          </div>
+        </div>
+        <ol class="numbered">
+          <li><h3>Outer arches</h3><p>The client's project: the larger structure being built.</p></li>
+          <li><h3>Inner arches</h3><p>The pieces Matryvo runs for them: quote, deposit and order.</p></li>
+          <li><h3>Lowercase wordmark</h3><p>Approachable and modern, with the authority of Bricolage Grotesque SemiBold.</p></li>
+          <li><h3>Restrained accent</h3><p>Laterite is recognisable without turning every surface into a brand-coloured block.</p></li>
+        </ol>
+      </div>
+      <p class="label" style="margin-top:16px">Logo recreated here for the web. Exact artwork lives in the Figma file.</p>
+    </section>
+
+    <!-- Design system -->
+    <section class="sec" id="system">
+      <div class="sec-head read">
+        <span class="label">Design system</span>
+        <h2 class="display">One system for marketing and product.</h2>
+      </div>
+      <div class="palette" aria-label="Colour palette">
+        <div><i style="background:var(--m-ink)"></i>Ink</div>
+        <div><i style="background:var(--m-bone)"></i>Bone</div>
+        <div><i style="background:var(--m-laterite)"></i>Laterite</div>
+        <div><i style="background:var(--m-celadon)"></i>Celadon</div>
+        <div><i style="background:var(--m-success)"></i>Success</div>
+        <div><i style="background:var(--m-line)"></i>Line</div>
+      </div>
+      <div class="split" style="margin-top:20px">
+        <div class="type-card">
+          <small>Display and headings</small><span class="d">Bricolage Grotesque</span>
+          <small>Reading and interface</small><span class="b">IBM Plex Sans</span>
+          <small>Data and references</small><span class="m">GH-0042 · $20,500.00 · 14 OCT 2026</span>
+        </div>
+        <div class="card">
+          <span class="label">System rules</span>
+          <div class="rules">
+            <b>4px</b><span>Architectural corner radius</span>
+            <b>44px</b><span>Minimum touch target</span>
+            <b>24px</b><span>Icon grid, 1.5px stroke</span>
+            <b>150–200ms</b><span>Motion duration</span>
+            <b>AA</b><span>Accessibility target</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Website -->
+    <section class="sec" id="website">
+      <div class="sec-head read">
+        <span class="label">Website</span>
+        <h2 class="display">Explain the journey before asking for the sale.</h2>
+      </div>
+      <div class="split">
+        <ol class="numbered">
+          <li><h3>Process-led navigation</h3><p>How It Works, regional pathways and Start a Project stay central.</p></li>
+          <li><h3>Portal visibility</h3><p>Stages, amounts, dates and the project manager appear right in the marketing previews.</p></li>
+          <li><h3>One primary action</h3><p>Start a Project carries the strongest visual weight on every page.</p></li>
+          <li><h3>Mobile-first clarity</h3><p>Dense information is summarised for small screens, not just shrunk.</p></li>
+        </ol>
+        <a class="browser" href="https://matryvo.com/" target="_blank" rel="noopener" aria-label="Open matryvo.com">
+          <div class="bar-top"><i></i><i></i><i></i></div>
+          <img src="assets/matryvo.jpg" alt="Matryvo homepage: From your drawings to your site, with a project card awaiting deposit">
+        </a>
+      </div>
+    </section>
+
+    <!-- Stages -->
+    <section class="sec" id="stages">
+      <div class="sec-head read">
+        <span class="label">Experience model</span>
+        <h2 class="display">Nine visible stages anchor the whole story.</h2>
+        <p class="muted">Marketing pages, project cards, payment screens and client messages all use the same stage model, so clients always know where they are.</p>
+      </div>
+      <div class="stages-wrap">
+        <div class="stages" role="list" aria-label="Project stages, example at stage 4 of 9">
+          <div class="done" role="listitem"><b>01</b><i></i>Brief</div>
+          <div class="done" role="listitem"><b>02</b><i></i>Plans &amp; rendering</div>
+          <div class="done" role="listitem"><b>03</b><i></i>Quote</div>
+          <div class="now" role="listitem"><b>04</b><i></i>Deposit</div>
+          <div role="listitem"><b>05</b><i></i>Production</div>
+          <div role="listitem"><b>06</b><i></i>Quality check</div>
+          <div role="listitem"><b>07</b><i></i>Final payment</div>
+          <div role="listitem"><b>08</b><i></i>Shipping</div>
+          <div role="listitem"><b>09</b><i></i>Delivery</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section class="sec" id="trust">
+      <div class="sec-head read">
+        <span class="label">Trust patterns</span>
+        <h2 class="display">Trust is designed into the details.</h2>
+      </div>
+      <div class="grid4">
+        <div class="card"><span class="label">BOQ table</span><p>Amounts right-aligned, currency always shown, dimensions explicit.</p><span class="tagline">$20,500.00</span></div>
+        <div class="card"><span class="label">Project status</span><p>Stage, next action, due date and project manager visible together.</p><span class="tagline">STAGE 4 OF 9</span></div>
+        <div class="card"><span class="label">QA record</span><p>Inspection photos tied to a date, item and BOQ reference.</p><span class="tagline">VERIFIED</span></div>
+        <div class="card"><span class="label">Payment safety</span><p>Guidance to pay registered accounts only, with written confirmation.</p><span class="tagline">NO PERSONAL ACCOUNTS</span></div>
+      </div>
+    </section>
+
+    <!-- Catalog -->
+    <section class="sec" id="catalog">
+      <div class="sec-head read">
+        <span class="label">Marketing catalog</span>
+        <h2 class="display">The system carried into a 20-page flipbook.</h2>
+        <p class="muted">The Africa catalog covers sourcing categories, quality control, shipping, warranty, payment options and FAQs. Instead of treating it as a separate brand piece, the logo, type, colours and editorial spacing carried straight into the document.</p>
+      </div>
+      <div class="sheets">
+        <div class="sheet dark"><span class="lockup"><svg aria-hidden="true" style="color:#f3efe8"><use href="#m-mark"/></svg>matryvo</span><span class="kicker">Catalog · Africa</span><h4>Build with confidence.</h4><p>Quality building materials, finishes and furniture at direct prices.</p><span class="foot">SHEET 01 / 20</span></div>
+        <div class="sheet"><span class="lockup"><svg aria-hidden="true" style="color:#1b2230"><use href="#m-mark"/></svg>matryvo</span><span class="kicker">Catalog · Africa</span><h4>Everything your project needs, from one source.</h4><p>Sourcing, payments, QA, shipping and warranty in one place.</p><span class="foot">SHEET 08 / 20</span></div>
+        <div class="sheet"><span class="lockup"><svg aria-hidden="true" style="color:#1b2230"><use href="#m-mark"/></svg>matryvo</span><span class="kicker">Catalog · Africa</span><h4>Pay your way. Keep your cash working.</h4><p>Clear payment stages, documented at every step.</p><span class="foot">SHEET 16 / 20</span></div>
+      </div>
+    </section>
+
+    <!-- Accessibility -->
+    <section class="sec" id="a11y">
+      <div class="sec-head read">
+        <span class="label">Accessibility</span>
+        <h2 class="display">A system requirement, not a polish pass.</h2>
+      </div>
+      <div class="grid5">
+        <div class="card"><span class="label">Visible focus</span><p>Clear keyboard focus styles.</p></div>
+        <div class="card"><span class="label">44 × 44</span><p>Minimum touch target on mobile.</p></div>
+        <div class="card"><span class="label">Status + text</span><p>No state relies on colour alone.</p></div>
+        <div class="card"><span class="label">Readable data</span><p>Money, dates and quantities formatted consistently.</p></div>
+        <div class="card"><span class="label">Reduced motion</span><p>Everything still makes sense without animation.</p></div>
+      </div>
+    </section>
+
+    <!-- Outcome -->
+    <section class="sec" id="outcome">
+      <div class="sec-head read">
+        <span class="label">Outcome</span>
+        <h2 class="display">One brand language across every touchpoint.</h2>
+        <p class="muted">Identity, product rules, website and catalog now work as one system.</p>
+      </div>
+      <div class="grid4">
+        <div class="card"><h3>Brand identity</h3><p>Nested-arch logo with primary, reversed and one-colour versions.</p></div>
+        <div class="card"><h3>Design system</h3><p>Light and dark tokens, type styles, components and accessibility rules.</p></div>
+        <div class="card"><h3>Website</h3><p>Responsive marketing pages and project intake built around the procurement journey.</p></div>
+        <div class="card"><h3>Flipbook</h3><p>20-page Africa catalog using the same type, colour and content hierarchy.</p></div>
+      </div>
+      <p class="closing" style="margin-top:56px">When the process is complicated, the interface should make responsibility, money and next steps easier to understand.</p>
+    </section>
+  </div>
+
+  <section class="next">
+    <div class="wrap">
+      <span class="label">More work</span>
+      <h2 class="display">Cosub.</h2>
+      <div class="next-row">
+        <a class="btn solid" href="cosub.html">Read Cosub</a>
+        <a class="btn" href="https://matryvo.com/" target="_blank" rel="noopener">Visit matryvo.com</a>
+        <a class="btn" href="/#work">Back to all work</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">© 2026 Olamilekan Muhammed</span>
+    <a class="label" href="#" style="text-decoration:none">Back to top ↑</a>
+  </div>
+</footer>
+</body>
+</html>
