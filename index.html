@@ -264,10 +264,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   .fact + .fact { padding-left: 12px; }
   .fact:nth-child(3) { padding-left: 0; }
 }
-/* First-visit intro: "Hello, I'm Olamilekan." then slides away to the hero. Only shown when html.intro is set. */
+/* First-visit intro: "Hello, I'm Olamilekan." then slides away to the hero. Only shown when html.show-intro is set. */
 .intro { display: none; }
-html.intro { --intro-delay: 1.3s; }
-html.intro .intro {
+html.show-intro { --intro-delay: 1.3s; }
+html.show-intro .intro {
   display: grid; place-items: center; position: fixed; inset: 0; z-index: 100;
   background: var(--ink); cursor: pointer;
   padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px));
@@ -279,8 +279,8 @@ html.intro .intro {
 .intro p span:nth-child(2) > i { animation-delay: .12s; }
 .intro p em { font-style: normal; color: var(--coin); }
 .intro small { position: absolute; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--dust); opacity: 0; animation: intro-hint .4s .5s forwards; }
-html.intro.intro-skip .intro { animation: intro-fade .3s ease forwards; }
-html.intro.intro-done .intro { display: none; }
+html.show-intro.intro-skip .intro { animation: intro-fade .3s ease forwards; }
+html.show-intro.intro-done .intro { display: none; }
 @keyframes intro-out { to { transform: translateY(-100%); visibility: hidden; } }
 @keyframes intro-fade { to { opacity: 0; visibility: hidden; } }
 @keyframes intro-hint { to { opacity: 1; } }
@@ -301,7 +301,7 @@ html.intro.intro-done .intro { display: none; }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (sessionStorage.getItem('introSeen')) return;
     sessionStorage.setItem('introSeen', '1');
-    document.documentElement.classList.add('intro');
+    document.documentElement.classList.add('show-intro');
   } catch (e) {}
 })();
 </script>
@@ -314,7 +314,7 @@ html.intro.intro-done .intro { display: none; }
 <script>
 (function () {
   var root = document.documentElement, intro = document.getElementById('intro');
-  if (!root.classList.contains('intro')) return;
+  if (!root.classList.contains('show-intro')) return;
   var done = false;
   function stopListening() {
     ['click', 'wheel', 'touchstart', 'keydown'].forEach(function (t) { window.removeEventListener(t, skip, true); });
@@ -330,7 +330,7 @@ html.intro.intro-done .intro { display: none; }
     if (done) return; done = true;
     stopListening();
     root.classList.add('intro-skip');
-    setTimeout(function () { root.classList.remove('intro', 'intro-skip'); }, 300);
+    setTimeout(function () { root.classList.remove('show-intro', 'intro-skip'); }, 300);
   }
   intro.addEventListener('animationend', function (e) { if (e.target === intro && e.animationName === 'intro-out') finish(); });
   ['click', 'wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, skip, { capture: true, passive: true }); });
