@@ -110,9 +110,9 @@ img { display: block; max-width: 100%; height: auto; }
 .hero h1 { font-size: clamp(44px, 7.4vw, 104px); }
 .hero h1 em { font-style: normal; color: var(--coin); }
 .hero h1 .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
-.hero h1 .line > span { display: inline-block; animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
-.hero h1 .line:nth-child(2) > span { animation-delay: .08s; }
-.hero h1 .line:nth-child(3) > span { animation-delay: .16s; }
+.hero h1 .line > span { display: inline-block; animation: rise .9s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--intro-delay, 0s); }
+.hero h1 .line:nth-child(2) > span { animation-delay: calc(var(--intro-delay, 0s) + .08s); }
+.hero h1 .line:nth-child(3) > span { animation-delay: calc(var(--intro-delay, 0s) + .16s); }
 .hero-copy { min-width: 0; display: grid; gap: 28px; }
 .hero p.lede { margin: 0; max-width: 34em; color: var(--dust); font-size: 19px; }
 .hero p.lede strong { color: var(--paper); font-weight: 500; }
@@ -121,8 +121,8 @@ img { display: block; max-width: 100%; height: auto; }
 .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--coin); box-shadow: 0 0 0 4px color-mix(in srgb, var(--coin) 22%, transparent); }
 .phones { position: relative; aspect-ratio: 1 / 1.12; max-height: 620px; min-width: 0; }
 .phones img { position: absolute; width: 48%; filter: drop-shadow(0 40px 60px rgba(0,0,0,.55)); }
-.phones .p1 { left: 4%; top: 6%; transform: rotate(-7deg); animation: float-a 1.1s .2s cubic-bezier(.2,.8,.2,1) both; }
-.phones .p2 { right: 2%; top: 0; transform: rotate(6deg); animation: float-b 1.1s .3s cubic-bezier(.2,.8,.2,1) both; }
+.phones .p1 { left: 4%; top: 6%; transform: rotate(-7deg); animation: float-a 1.1s calc(var(--intro-delay, 0s) + .2s) cubic-bezier(.2,.8,.2,1) both; }
+.phones .p2 { right: 2%; top: 0; transform: rotate(6deg); animation: float-b 1.1s calc(var(--intro-delay, 0s) + .3s) cubic-bezier(.2,.8,.2,1) both; }
 .phones .device {
   position: absolute; width: 45%; top: 1%;
   padding: 2.4%; background: #0a0a0c; border-radius: 15% / 7%;
@@ -264,6 +264,29 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   .fact + .fact { padding-left: 12px; }
   .fact:nth-child(3) { padding-left: 0; }
 }
+/* First-visit intro: "Hello, I'm Olamilekan." then slides away to the hero. Only shown when html.intro is set. */
+.intro { display: none; }
+html.intro { --intro-delay: 1.3s; }
+html.intro .intro {
+  display: grid; place-items: center; position: fixed; inset: 0; z-index: 100;
+  background: var(--ink); cursor: pointer;
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px));
+  animation: intro-out .65s cubic-bezier(.76,0,.24,1) 1.1s forwards;
+}
+.intro p { margin: 0; font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: clamp(36px, 7vw, 96px); line-height: 1; letter-spacing: -.02em; text-align: center; text-wrap: balance; }
+.intro p span { display: inline-block; overflow: hidden; padding-bottom: .08em; vertical-align: bottom; }
+.intro p span > i { display: inline-block; font-style: normal; animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+.intro p span:nth-child(2) > i { animation-delay: .12s; }
+.intro p em { font-style: normal; color: var(--coin); }
+.intro small { position: absolute; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--dust); opacity: 0; animation: intro-hint .4s .5s forwards; }
+html.intro.intro-skip .intro { animation: intro-fade .3s ease forwards; }
+html.intro.intro-done .intro { display: none; }
+@keyframes intro-out { to { transform: translateY(-100%); visibility: hidden; } }
+@keyframes intro-fade { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-hint { to { opacity: 1; } }
+.hint-touch { display: none; }
+@media (hover: none) { .hint-mouse { display: none; } .hint-touch { display: inline; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
@@ -271,8 +294,49 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 </style>
 <link rel="stylesheet" href="motion.css">
 <script src="motion.js" defer></script>
+<script>
+/* Decide before first paint: show the intro once per browser session, never for reduced-motion users */
+(function () {
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (sessionStorage.getItem('introSeen')) return;
+    sessionStorage.setItem('introSeen', '1');
+    document.documentElement.classList.add('intro');
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
+<div class="intro" id="intro" aria-hidden="true">
+  <p><span><i>Hello,</i></span> <span><i>I'm Olamilekan<em>.</em></i></span></p>
+  <small><span class="hint-mouse">Click or scroll to skip</span><span class="hint-touch">Tap to skip</span></small>
+</div>
+<script>
+(function () {
+  var root = document.documentElement, intro = document.getElementById('intro');
+  if (!root.classList.contains('intro')) return;
+  var done = false;
+  function stopListening() {
+    ['click', 'wheel', 'touchstart', 'keydown'].forEach(function (t) { window.removeEventListener(t, skip, true); });
+  }
+  // Natural end: hide the overlay but keep the hero's delayed entrance running
+  function finish() {
+    if (done) return; done = true;
+    stopListening();
+    root.classList.add('intro-done');
+  }
+  // Skip: fade out fast and drop the delay so the hero is there right away
+  function skip() {
+    if (done) return; done = true;
+    stopListening();
+    root.classList.add('intro-skip');
+    setTimeout(function () { root.classList.remove('intro', 'intro-skip'); }, 300);
+  }
+  intro.addEventListener('animationend', function (e) { if (e.target === intro && e.animationName === 'intro-out') finish(); });
+  ['click', 'wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, skip, { capture: true, passive: true }); });
+  setTimeout(finish, 2400); // safety net
+})();
+</script>
 <header class="top">
   <div class="wrap">
     <a class="mark" href="#top">Olamilekan<span>.</span>design</a>
