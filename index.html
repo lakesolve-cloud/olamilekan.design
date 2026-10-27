@@ -266,12 +266,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 }
 /* First-visit intro: "Hello, I'm Olamilekan." then slides away to the hero. Only shown when html.show-intro is set. */
 .intro { display: none; }
-html.show-intro { --intro-delay: 1.3s; }
+html.show-intro { --intro-delay: 2.1s; }
 html.show-intro .intro {
   display: grid; place-items: center; position: fixed; inset: 0; z-index: 100;
   background: var(--ink); cursor: pointer;
   padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px));
-  animation: intro-out .65s cubic-bezier(.76,0,.24,1) 1.1s forwards;
+  animation: intro-out .7s cubic-bezier(.76,0,.24,1) 1.9s forwards;
 }
 .intro p { margin: 0; font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: clamp(36px, 7vw, 96px); line-height: 1; letter-spacing: -.02em; text-align: center; text-wrap: balance; }
 .intro p span { display: inline-block; overflow: hidden; padding-bottom: .08em; vertical-align: bottom; }
@@ -334,7 +334,7 @@ html.show-intro.intro-done .intro { display: none; }
   }
   intro.addEventListener('animationend', function (e) { if (e.target === intro && e.animationName === 'intro-out') finish(); });
   ['click', 'wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, skip, { capture: true, passive: true }); });
-  setTimeout(finish, 2400); // safety net
+  setTimeout(finish, 3200); // safety net
 })();
 </script>
 <header class="top">
